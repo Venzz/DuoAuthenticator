@@ -1,0 +1,6 @@
+﻿<Venz:Application
+    x:Class="DuoAuthenticator.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Venz="using:Venz.UI.Xaml">
+</Venz:Application>

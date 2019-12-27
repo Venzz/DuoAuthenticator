@@ -1,0 +1,14 @@
+.vs/
+DuoAuthenticator/bin/
+DuoAuthenticator/obj/
+DuoAuthenticator/_pkginfo.txt
+DuoAuthenticator/BundleArtifacts/
+
+*.appx
+*.nuget.props
+*.nuget.targets
+*.csproj.user
+*_TemporaryKey.pfx
+*_StoreKey.pfx
+Package.StoreAssociation.xml
+project.lock.json
