@@ -5,7 +5,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Json;
 using Windows.Storage;
 
-namespace DuoAuthenticator.ViewModel
+namespace DuoAuthenticator.UI.Controller
 {
     public class PasscodeContext: ObservableObject, IDisposable
     {

@@ -1,10 +1,10 @@
-﻿using DuoAuthenticator.ViewModel;
+﻿using DuoAuthenticator.UI.Controller;
 using System;
 using Venz.UI.Xaml;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Navigation;
 
-namespace DuoAuthenticator.View
+namespace DuoAuthenticator.UI.View
 {
     public sealed partial class PasscodePage: Page
     {

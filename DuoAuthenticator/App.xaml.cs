@@ -1,5 +1,5 @@
 ﻿using DuoAuthenticator.Model;
-using DuoAuthenticator.View;
+using DuoAuthenticator.UI.View;
 using System;
 using System.Threading.Tasks;
 using Venz.UI.Xaml;

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Venz.Data;
 using Windows.Data.Json;
 
-namespace DuoAuthenticator.ViewModel
+namespace DuoAuthenticator.UI.Controller
 {
     public class SetupContext: ObservableObject
     {

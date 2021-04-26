@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Venz.Services;
 using Windows.Data.Json;
 using Windows.Web.Http;
 
-namespace DuoAuthenticator.Services.Duo
+namespace DuoAuthenticator.Services
 {
     public class DuoInstanceActivationService: IInstanceActivationService
     {

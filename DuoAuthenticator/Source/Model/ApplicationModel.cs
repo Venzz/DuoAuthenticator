@@ -1,4 +1,4 @@
-﻿using DuoAuthenticator.Services.Duo;
+﻿using DuoAuthenticator.Services;
 
 namespace DuoAuthenticator.Model
 {

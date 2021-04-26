@@ -1,8 +1,8 @@
-﻿using DuoAuthenticator.ViewModel;
+﻿using DuoAuthenticator.UI.Controller;
 using System;
 using Venz.UI.Xaml;
 
-namespace DuoAuthenticator.View
+namespace DuoAuthenticator.UI.View
 {
     public sealed partial class SetupPage: Page
     {

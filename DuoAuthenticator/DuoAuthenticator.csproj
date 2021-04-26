@@ -109,18 +109,17 @@
     <Compile Include="Source\Model\Instance\Instance.cs" />
     <Compile Include="Source\Model\ApplicationModel.cs" />
     <Compile Include="Source\Model\Instance\OneTimePasswordGenerator.cs" />
-    <Compile Include="Source\Primitives\OperationResult.cs" />
     <Compile Include="Source\Services\Duo\DuoInstanceSettings.cs" />
     <Compile Include="Source\Services\Duo\DuoInstanceActivationService.cs" />
     <Compile Include="Source\Services\Interface\IInstanceSettings.cs" />
     <Compile Include="Source\Services\Interface\IInstanceActivationService.cs" />
     <Compile Include="Source\Settings.cs" />
-    <Compile Include="Source\ViewModel\SetupContext.cs" />
-    <Compile Include="Source\ViewModel\PasscodeContext.cs" />
-    <Compile Include="Source\View\SetupPage.xaml.cs">
+    <Compile Include="Source\UI\Controller\SetupContext.cs" />
+    <Compile Include="Source\UI\Controller\PasscodeContext.cs" />
+    <Compile Include="Source\UI\View\SetupPage.xaml.cs">
       <DependentUpon>SetupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\PasscodePage.xaml.cs">
+    <Compile Include="Source\UI\View\PasscodePage.xaml.cs">
       <DependentUpon>PasscodePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -146,11 +145,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Source\View\SetupPage.xaml">
+    <Page Include="Source\UI\View\SetupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Source\View\PasscodePage.xaml">
+    <Page Include="Source\UI\View\PasscodePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,6 +172,7 @@
       <Name>Venz.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

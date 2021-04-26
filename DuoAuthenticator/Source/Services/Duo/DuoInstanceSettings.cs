@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.Data.Json;
 
-namespace DuoAuthenticator.Services.Duo
+namespace DuoAuthenticator.Services
 {
     public class DuoInstanceSettings: IInstanceSettings
     {
