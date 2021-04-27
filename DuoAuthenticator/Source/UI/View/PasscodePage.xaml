@@ -31,9 +31,13 @@
                 Tapped="OnNextTapped">
             </Button>
         </StackPanel>
-        <Grid Margin="10,0" Grid.Row="3">
-            <CheckBox Margin="0,-100,0,0" Content="Auto close application"/>
-            <Button Width="170" Content="Export" HorizontalAlignment="Left" Tapped="OnExportTapped"/>
-        </Grid>
+        <Button
+            Grid.Row="3"
+            Margin="10,0"
+            Width="165"
+            Content="Export"
+            HorizontalAlignment="Left"
+            Tapped="OnExportTapped">
+        </Button>
     </Grid>
 </Core:Page>

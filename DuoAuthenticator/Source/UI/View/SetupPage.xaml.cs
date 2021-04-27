@@ -14,6 +14,11 @@ namespace DuoAuthenticator.UI.View
             DataContext = Context;
         }
 
+        protected override void SetState(FrameNavigation.Parameter navigationParameter, FrameNavigation.Parameter stateParameter)
+        {
+            Navigation.ResetBackStack();
+        }
+
         private async void OnActivateViaEmailMessageTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
             var url = EmailMessageUrl.Text;

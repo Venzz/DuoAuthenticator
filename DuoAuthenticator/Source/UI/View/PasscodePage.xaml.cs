@@ -17,13 +17,8 @@ namespace DuoAuthenticator.UI.View
 
         protected override async void SetState(FrameNavigation.Parameter navigationParameter, FrameNavigation.Parameter stateParameter)
         {
+            Navigation.ResetBackStack();
             await Context.InitializeAsync();
-        }
-
-        private async void OnExportTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
-        {
-            await Context.ExportAsync();
-            Navigation.Navigate(typeof(SetupPage));
         }
 
         private void OnCopyTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
@@ -39,6 +34,12 @@ namespace DuoAuthenticator.UI.View
         private void OnNextTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
             Context.GenerateNextPasscode();
+        }
+
+        private async void OnExportTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
+        {
+            await Context.ExportAsync();
+            Navigation.Navigate(typeof(SetupPage));
         }
     }
 }

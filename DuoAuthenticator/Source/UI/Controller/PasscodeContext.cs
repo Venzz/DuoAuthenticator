@@ -4,6 +4,7 @@ using Venz.Data;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Json;
 using Windows.Storage;
+using Windows.System;
 
 namespace DuoAuthenticator.UI.Controller
 {
@@ -36,9 +37,11 @@ namespace DuoAuthenticator.UI.Controller
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
             dataPackage.SetText(content.Stringify());
 
-            await App.Dispatcher.RunAsync(() => {
+            await App.Dispatcher.RunAsync(async () => {
                 Clipboard.SetContent(dataPackage);
                 Clipboard.Flush();
+                await Venz.Windows.MessageDialog.ShowAsync("Export Successful", "The export string is copied to the clipboard.");
+                await Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             });
 
             App.Settings.OneTimePasswordSecret = "";

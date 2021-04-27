@@ -172,6 +172,10 @@
       <Project>{04bb7d9d-6f87-4b6d-b1bc-b9fce6c10ce6}</Project>
       <Name>Venz.Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Venz\Venz.Windows\Venz.Windows.csproj">
+      <Project>{b3f0bd5a-3d5f-474b-ad8a-fcca5c7156f1}</Project>
+      <Name>Venz.Windows</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
