@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBox
@@ -26,7 +27,14 @@
             Maximum="15"
             Value="{Binding RefreshIndicatorProgress}">
         </ProgressBar>
-        <Grid Margin="10,0" Grid.Row="2">
+        <StackPanel Grid.Row="2" Margin="10" Orientation="Horizontal">
+            <Button
+                Width="165"
+                Content="Copy"
+                Tapped="OnCopyTapped">
+            </Button>
+        </StackPanel>
+        <Grid Margin="10,0" Grid.Row="3">
             <CheckBox Margin="0,-100,0,0" Content="Auto close application"/>
             <Button Width="170" Content="Export" HorizontalAlignment="Left" Tapped="OnExportTapped"/>
         </Grid>

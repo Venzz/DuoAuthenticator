@@ -27,6 +27,16 @@ namespace DuoAuthenticator.UI.View
             Navigation.Navigate(typeof(SetupPage));
         }
 
+        private void OnCopyTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
+        {
+            var dataPackage = new DataPackage();
+            dataPackage.RequestedOperation = DataPackageOperation.Copy;
+            dataPackage.SetText(Context.Passcode);
+
+            Clipboard.SetContent(dataPackage);
+            Clipboard.Flush();
+        }
+
         protected override void OnNavigatedFrom(NavigationEventArgs args)
         {
             base.OnNavigatedFrom(args);
