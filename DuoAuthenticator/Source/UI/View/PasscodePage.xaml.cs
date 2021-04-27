@@ -2,7 +2,6 @@
 using System;
 using Venz.UI.Xaml;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.UI.Xaml.Navigation;
 
 namespace DuoAuthenticator.UI.View
 {
@@ -37,10 +36,9 @@ namespace DuoAuthenticator.UI.View
             Clipboard.Flush();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs args)
+        private void OnNextTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
-            base.OnNavigatedFrom(args);
-            Context.Dispose();
+            Context.GenerateNextPasscode();
         }
     }
 }

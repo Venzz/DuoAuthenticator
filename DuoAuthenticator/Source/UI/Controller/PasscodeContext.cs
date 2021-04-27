@@ -7,34 +7,22 @@ using Windows.Storage;
 
 namespace DuoAuthenticator.UI.Controller
 {
-    public class PasscodeContext: ObservableObject, IDisposable
+    public class PasscodeContext: ObservableObject
     {
-        private Boolean IsDisposed;
-
         public String Passcode { get; private set; }
-        public Double RefreshIndicatorProgress { get; private set; }
 
-        public Task InitializeAsync() => Task.Run(() =>
+        public Task InitializeAsync()
         {
-            Start();
-        });
+            Passcode = App.Model.Instance.GetPasscode();
+            OnPropertyChanged(nameof(Passcode));
+            return Task.CompletedTask;
+        }
 
-        private async void Start() => await Task.Run(async () =>
+        public void GenerateNextPasscode()
         {
-            while (!IsDisposed)
-            {
-                Passcode = App.Model.Instance.GetPasscode();
-                RefreshIndicatorProgress = 0;
-                OnPropertyChanged(nameof(RefreshIndicatorProgress), nameof(Passcode));
-
-                while (RefreshIndicatorProgress < 15)
-                {
-                    await Task.Delay(1000);
-                    RefreshIndicatorProgress = (RefreshIndicatorProgress + 1) % 16;
-                    OnPropertyChanged(nameof(RefreshIndicatorProgress));
-                }
-            }
-        });
+            Passcode = App.Model.Instance.GetPasscode();
+            OnPropertyChanged(nameof(Passcode));
+        }
 
         public async Task ExportAsync() => await Task.Run(async () =>
         {
@@ -56,10 +44,5 @@ namespace DuoAuthenticator.UI.Controller
             App.Settings.OneTimePasswordSecret = "";
             App.Settings.OneTimePasswordCounter = 0;
         });
-
-        public void Dispose()
-        {
-            IsDisposed = true;
-        }
     }
 }
