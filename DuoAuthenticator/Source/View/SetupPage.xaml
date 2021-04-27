@@ -1,7 +1,8 @@
-﻿<Page
+<Core:Page
     x:Class="DuoAuthenticator.View.SetupPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Core="using:Venz.UI.Xaml">
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="10,10,10,50">
@@ -15,4 +16,4 @@
             <Button Width="170" Content="Activate" HorizontalAlignment="Left" Tapped="OnActivateViaExportedSettingsTapped"/>
         </StackPanel>
     </StackPanel>
-</Page>
+</Core:Page>

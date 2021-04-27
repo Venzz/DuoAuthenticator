@@ -1,7 +1,8 @@
-﻿<Page
+<Core:Page
     x:Class="DuoAuthenticator.View.PasscodePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Core="using:Venz.UI.Xaml">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -30,4 +31,4 @@
             <Button Width="170" Content="Export" HorizontalAlignment="Left" Tapped="OnExportTapped"/>
         </Grid>
     </Grid>
-</Page>
+</Core:Page>

@@ -11,8 +11,8 @@
     <AssemblyName>DuoAuthenticator</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.10240.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -26,6 +26,7 @@
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <AppxPackageDir>D:\Private\Microsoft Store\Packages\</AppxPackageDir>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -99,7 +100,6 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="DuoAuthenticator_StoreKey.pfx" />
-    <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -116,7 +116,6 @@
     <Compile Include="Source\Services\Interface\IInstanceActivationService.cs" />
     <Compile Include="Source\Settings.cs" />
     <Compile Include="Source\ViewModel\SetupContext.cs" />
-    <Compile Include="Venz\Extensions\StringExtensions.cs" />
     <Compile Include="Source\ViewModel\PasscodeContext.cs" />
     <Compile Include="Source\View\SetupPage.xaml.cs">
       <DependentUpon>SetupPage.xaml</DependentUpon>
@@ -124,12 +123,6 @@
     <Compile Include="Source\View\PasscodePage.xaml.cs">
       <DependentUpon>PasscodePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Venz\Converters.cs" />
-    <Compile Include="Venz\ObservableObject.cs" />
-    <Compile Include="Venz\UI\Xaml\Application\Application.cs" />
-    <Compile Include="Venz\UI\Xaml\Application\Application.Dispatcher.cs" />
-    <Compile Include="Venz\UI\Xaml\Application\Application.Extensions.cs" />
-    <Compile Include="Venz\UI\Xaml\Application\Application.Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -162,7 +155,24 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.12</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Venz\Venz.Core\Venz.Core.csproj">
+      <Project>{13bd17b3-dacf-4d01-9100-754b307eaef5}</Project>
+      <Name>Venz.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Venz\Venz.Extensions\Venz.Extensions.csproj">
+      <Project>{04bb7d9d-6f87-4b6d-b1bc-b9fce6c10ce6}</Project>
+      <Name>Venz.Extensions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

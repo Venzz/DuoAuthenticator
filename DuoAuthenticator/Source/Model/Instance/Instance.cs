@@ -2,7 +2,8 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Venz;
+using System.Xml;
+using Venz.Extensions;
 using Windows.Web.Http;
 
 namespace DuoAuthenticator.Model
@@ -36,7 +37,7 @@ namespace DuoAuthenticator.Model
             client.DefaultRequestHeaders.Add("User-Agent", userAgent);
             var responseString = await client.GetStringAsync(new Uri(url)).AsTask().ConfigureAwait(false);
 
-            var activationString = responseString.Between("url=", "\"").HtmlUnescape();
+            var activationString = HtmlUnescape(responseString.Between("url=", "\""));
             var uri = new Uri(activationString.Replace("duo://", "https://"));
             var host = uri.Host.Replace("m.", "api.").Replace("m-", "api-");
             var code = uri.PathAndQuery.Split(new Char[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
@@ -46,6 +47,13 @@ namespace DuoAuthenticator.Model
                 App.Settings.OneTimePasswordCounter = 1;
                 App.Settings.OneTimePasswordSecret = activationResult.Value.OneTimePasswordSecret;
             }
+        }
+
+        private static String HtmlUnescape(String source)
+        {
+            var document = new XmlDocument();
+            document.LoadXml($"<string>{source}</string>");
+            return document.DocumentElement.FirstChild?.InnerText;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using DuoAuthenticator.ViewModel;
 using System;
-using Windows.UI.Xaml.Controls;
+using Venz.UI.Xaml;
 
 namespace DuoAuthenticator.View
 {
@@ -20,13 +20,13 @@ namespace DuoAuthenticator.View
             EmailMessageUrl.Text = "";
 
             await Context.ActivateViaEmailMessageAsync(url);
-            Frame.Navigate(typeof(PasscodePage));
+            Navigation.Navigate(typeof(PasscodePage));
         }
 
         private async void OnActivateViaExportedSettingsTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
             await Context.ActivateViaExportedSettingsAsync(ExportedContent.Text);
-            Frame.Navigate(typeof(PasscodePage));
+            Navigation.Navigate(typeof(PasscodePage));
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Venz.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls;
 
 namespace DuoAuthenticator
 {
@@ -19,7 +18,7 @@ namespace DuoAuthenticator
             InitializeComponent();
         }
 
-        protected override Task OnManuallyActivatedAsync(Frame frame, Boolean newInstance, String args)
+        protected override Task OnManuallyActivatedAsync(Frame frame, Boolean newInstance, PrelaunchStage prelaunchStage, String args)
         {
             if (frame.Content == null)
             {
@@ -27,7 +26,7 @@ namespace DuoAuthenticator
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
                 ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(360, 500));
                 ApplicationView.GetForCurrentView().TryResizeView(new Size(360, 500));
-                frame.Navigate(String.IsNullOrWhiteSpace(App.Settings.OneTimePasswordSecret) ? typeof(SetupPage) : typeof(PasscodePage));
+                frame.Navigation.Navigate(String.IsNullOrWhiteSpace(App.Settings.OneTimePasswordSecret) ? typeof(SetupPage) : typeof(PasscodePage));
             }
             return Task.CompletedTask;
         }

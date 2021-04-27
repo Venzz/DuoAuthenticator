@@ -1,6 +1,7 @@
 ﻿using DuoAuthenticator.ViewModel;
 using System;
-using Windows.UI.Xaml.Controls;
+using Venz.UI.Xaml;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Navigation;
 
 namespace DuoAuthenticator.View
@@ -15,7 +16,7 @@ namespace DuoAuthenticator.View
             DataContext = Context;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs args)
+        protected override async void SetState(FrameNavigation.Parameter navigationParameter, FrameNavigation.Parameter stateParameter)
         {
             await Context.InitializeAsync();
         }
@@ -23,12 +24,12 @@ namespace DuoAuthenticator.View
         private async void OnExportTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
             await Context.ExportAsync();
-            Frame.Navigate(typeof(SetupPage));
+            Navigation.Navigate(typeof(SetupPage));
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs args)
+        protected override void OnNavigatedFrom(NavigationEventArgs args)
         {
-            base.OnNavigatingFrom(args);
+            base.OnNavigatedFrom(args);
             Context.Dispose();
         }
     }
