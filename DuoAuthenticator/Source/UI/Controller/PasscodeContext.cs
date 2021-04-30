@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Venz.Data;
+using Venz.Windows;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Json;
 using Windows.Storage;
@@ -40,7 +41,7 @@ namespace DuoAuthenticator.UI.Controller
             await App.Dispatcher.RunAsync(async () => {
                 Clipboard.SetContent(dataPackage);
                 Clipboard.Flush();
-                await Venz.Windows.MessageDialog.ShowAsync("Export Successful", "The export string is copied to the clipboard.");
+                await MessageDialog.ShowAsync("Export Successful", "The export string is copied to the clipboard.");
                 await Launcher.LaunchFolderAsync(ApplicationData.Current.LocalFolder);
             });
 

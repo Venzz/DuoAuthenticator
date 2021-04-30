@@ -1,6 +1,7 @@
 ﻿using DuoAuthenticator.UI.Controller;
 using System;
 using Venz.UI.Xaml;
+using Venz.Windows;
 using Windows.ApplicationModel.DataTransfer;
 
 namespace DuoAuthenticator.UI.View
@@ -18,6 +19,9 @@ namespace DuoAuthenticator.UI.View
         protected override async void SetState(FrameNavigation.Parameter navigationParameter, FrameNavigation.Parameter stateParameter)
         {
             Navigation.ResetBackStack();
+            if (navigationParameter.Contains("uri"))
+                await MessageDialog.ShowAsync("Activation Failed", "Duo has already been activated.");
+
             await Context.InitializeAsync();
         }
 

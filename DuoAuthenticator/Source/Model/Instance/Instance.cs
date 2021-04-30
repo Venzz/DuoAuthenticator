@@ -29,22 +29,29 @@ namespace DuoAuthenticator.Model
 
         public async Task<OperationResult> ActivateAsync(String activationCode)
         {
-            if (String.IsNullOrWhiteSpace(activationCode))
-                return OperationResult.CreateFailed("Activation code is empty.");
-
-            var activationCodeParts = activationCode.Split('-', StringSplitOptions.RemoveEmptyEntries);
-            if (activationCodeParts.Length != 2)
-                return OperationResult.CreateFailed("Activation code is invalid.");
-
-            var host = Encoding.UTF8.GetString(CryptographicBuffer.DecodeFromBase64String(activationCodeParts[1]).ToArray());
-            var code = activationCodeParts[0];
-            var activationResult = await InstanceActivationService.ActivateAsync(host, code).ConfigureAwait(false);
-            if (activationResult.IsSuccessful)
+            try
             {
-                App.Settings.OneTimePasswordCounter = 1;
-                App.Settings.OneTimePasswordSecret = activationResult.Value.OneTimePasswordSecret;
+                if (String.IsNullOrWhiteSpace(activationCode))
+                    return OperationResult.CreateFailed("Activation code is empty.");
+
+                var activationCodeParts = activationCode.Split('-', StringSplitOptions.RemoveEmptyEntries);
+                if (activationCodeParts.Length != 2)
+                    return OperationResult.CreateFailed("Activation code is invalid.");
+
+                var host = Encoding.UTF8.GetString(CryptographicBuffer.DecodeFromBase64String(activationCodeParts[1]).ToArray());
+                var code = activationCodeParts[0];
+                var activationResult = await InstanceActivationService.ActivateAsync(host, code).ConfigureAwait(false);
+                if (activationResult.IsSuccessful)
+                {
+                    App.Settings.OneTimePasswordCounter = 1;
+                    App.Settings.OneTimePasswordSecret = activationResult.Value.OneTimePasswordSecret;
+                }
+                return activationResult;
             }
-            return activationResult;
+            catch (Exception)
+            {
+                return OperationResult.CreateFailed("Activation code is invalid.");
+            }
         }
 
         public Task<OperationResult> ImportSettingsAsync(String value)

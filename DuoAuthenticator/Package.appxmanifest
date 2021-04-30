@@ -26,6 +26,13 @@
         <uap:SplashScreen Image="Resources\Package\Splash_620x300.png" />
         <uap:LockScreen BadgeLogo="Resources\Package\Badge_24x24.png" Notification="badge"/>
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="duo">
+            <uap:DisplayName>Duo Authenticator</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
