@@ -114,7 +114,6 @@
     <Compile Include="Source\Services\Interface\IInstanceSettings.cs" />
     <Compile Include="Source\Services\Interface\IInstanceActivationService.cs" />
     <Compile Include="Source\Settings.cs" />
-    <Compile Include="Source\UI\Controller\SetupContext.cs" />
     <Compile Include="Source\UI\Controller\PasscodeContext.cs" />
     <Compile Include="Source\UI\View\SetupPage.xaml.cs">
       <DependentUpon>SetupPage.xaml</DependentUpon>

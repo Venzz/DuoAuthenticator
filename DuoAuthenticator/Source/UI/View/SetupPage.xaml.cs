@@ -1,17 +1,13 @@
-﻿using DuoAuthenticator.UI.Controller;
-using System;
+﻿using System;
 using Venz.UI.Xaml;
 
 namespace DuoAuthenticator.UI.View
 {
     public sealed partial class SetupPage: Page
     {
-        private SetupContext Context = new SetupContext();
-
         public SetupPage()
         {
             InitializeComponent();
-            DataContext = Context;
         }
 
         protected override void SetState(FrameNavigation.Parameter navigationParameter, FrameNavigation.Parameter stateParameter)
@@ -22,7 +18,7 @@ namespace DuoAuthenticator.UI.View
         private async void OnActivateViaCodeTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
             var activationCode = ActivationCode.Text;
-            var activationResult = await Context.ActivateViaActivationCodeAsync(activationCode);
+            var activationResult = await App.Model.Instance.ActivateAsync(activationCode);
             if (!activationResult.IsSuccessful)
             {
                 await Venz.Windows.MessageDialog.ShowAsync("Activation Failed", activationResult.Message);
@@ -35,7 +31,14 @@ namespace DuoAuthenticator.UI.View
 
         private async void OnActivateViaExportedSettingsTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
-            await Context.ActivateViaExportedSettingsAsync(ExportedContent.Text);
+            var activationResult = await App.Model.Instance.ImportSettingsAsync(ExportedContent.Text);
+            if (!activationResult.IsSuccessful)
+            {
+                await Venz.Windows.MessageDialog.ShowAsync("Activation Failed", activationResult.Message);
+                return;
+            }
+
+            ExportedContent.Text = "";
             Navigation.Navigate(typeof(PasscodePage));
         }
     }

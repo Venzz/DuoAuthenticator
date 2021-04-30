@@ -5,6 +5,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Venz.Services;
+using Windows.Data.Json;
 using Windows.Security.Cryptography;
 
 namespace DuoAuthenticator.Model
@@ -44,6 +45,24 @@ namespace DuoAuthenticator.Model
                 App.Settings.OneTimePasswordSecret = activationResult.Value.OneTimePasswordSecret;
             }
             return activationResult;
+        }
+
+        public Task<OperationResult> ImportSettingsAsync(String value)
+        {
+            try
+            {
+                if (String.IsNullOrWhiteSpace(value))
+                    return Task.FromResult(OperationResult.CreateFailed("Settings string is empty."));
+
+                var importedContent = JsonObject.Parse(value);
+                App.Settings.OneTimePasswordSecret = importedContent.GetNamedString("secret");
+                App.Settings.OneTimePasswordCounter = (UInt64)importedContent.GetNamedNumber("counter");
+                return Task.FromResult(OperationResult.CreateSuccessful());
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(OperationResult.CreateFailed("Invalid settings string."));
+            }
         }
     }
 }
