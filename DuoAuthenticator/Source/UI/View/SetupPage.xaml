@@ -6,9 +6,9 @@
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Margin="10,10,10,50">
-            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20" Text="Activate via Email"/>
-            <TextBox x:Name="EmailMessageUrl" Margin="0,0,0,10" PlaceholderText="Paste a link from the email message"/>
-            <Button Width="170" Content="Activate" HorizontalAlignment="Left" Tapped="OnActivateViaEmailMessageTapped"/>
+            <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20" Text="Activate via Code"/>
+            <TextBox x:Name="ActivationCode" Margin="0,0,0,10" PlaceholderText="Example: 2xmH7FnDVlSUwvMpFSZl-YXBpLTdhMTc3ZDgwLmR1b3NlY3VyaXR5LmNvbQ"/>
+            <Button Width="170" Content="Activate" HorizontalAlignment="Left" Tapped="OnActivateViaCodeTapped"/>
         </StackPanel>
         <StackPanel Margin="10">
             <TextBlock Style="{StaticResource SubtitleTextBlockStyle}" Margin="0,0,0,20" Text="Activate via Exported Settings"/>

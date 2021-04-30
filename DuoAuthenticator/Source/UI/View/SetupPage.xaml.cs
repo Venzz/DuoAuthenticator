@@ -19,12 +19,17 @@ namespace DuoAuthenticator.UI.View
             Navigation.ResetBackStack();
         }
 
-        private async void OnActivateViaEmailMessageTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
+        private async void OnActivateViaCodeTapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs args)
         {
-            var url = EmailMessageUrl.Text;
-            EmailMessageUrl.Text = "";
+            var activationCode = ActivationCode.Text;
+            var activationResult = await Context.ActivateViaActivationCodeAsync(activationCode);
+            if (!activationResult.IsSuccessful)
+            {
+                await Venz.Windows.MessageDialog.ShowAsync("Activation Failed", activationResult.Message);
+                return;
+            }
 
-            await Context.ActivateViaEmailMessageAsync(url);
+            ActivationCode.Text = "";
             Navigation.Navigate(typeof(PasscodePage));
         }
 

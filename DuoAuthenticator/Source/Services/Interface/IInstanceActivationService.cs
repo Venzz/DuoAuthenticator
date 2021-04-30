@@ -6,6 +6,6 @@ namespace DuoAuthenticator.Services
 {
     public interface IInstanceActivationService
     {
-        Task<OperationResult<IInstanceSettings>> ActivateAsync(String url, String code);
+        Task<OperationResult<IInstanceSettings>> ActivateAsync(String host, String code);
     }
 }

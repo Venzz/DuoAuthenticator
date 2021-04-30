@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Venz.Data;
+using Venz.Services;
 using Windows.Data.Json;
 
 namespace DuoAuthenticator.UI.Controller
@@ -10,7 +11,7 @@ namespace DuoAuthenticator.UI.Controller
         public String Passcode { get; private set; }
         public Double RefreshIndicatorProgress { get; private set; }
 
-        public Task ActivateViaEmailMessageAsync(String url) => App.Model.Instance.ActivateAsync(url);
+        public Task<OperationResult> ActivateViaActivationCodeAsync(String activationCode) => App.Model.Instance.ActivateAsync(activationCode);
 
         public async Task ActivateViaExportedSettingsAsync(String value) => await Task.Run(() =>
         {

@@ -1,10 +1,11 @@
 ﻿using DuoAuthenticator.Services;
 using System;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
-using Venz.Extensions;
-using Windows.Web.Http;
+using Venz.Services;
+using Windows.Security.Cryptography;
 
 namespace DuoAuthenticator.Model
 {
@@ -25,35 +26,24 @@ namespace DuoAuthenticator.Model
             return passcode;
         }
 
-        public async Task ActivateAsync(String url)
+        public async Task<OperationResult> ActivateAsync(String activationCode)
         {
-            var userAgent = "";
-            if (url.Contains("android"))
-                userAgent = "Mozilla/5.0 (Linux; Android 9; Nokia 6.1 Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36";
-            else if (url.Contains("windows"))
-                userAgent = "Mozilla/5.0 (Windows Phone 10.0; Android 6.0.1; Microsoft; Lumia 950 XL Dual SIM) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Mobile Safari/537.36 Edge/15.15063";
+            if (String.IsNullOrWhiteSpace(activationCode))
+                return OperationResult.CreateFailed("Activation code is empty.");
 
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", userAgent);
-            var responseString = await client.GetStringAsync(new Uri(url)).AsTask().ConfigureAwait(false);
+            var activationCodeParts = activationCode.Split('-', StringSplitOptions.RemoveEmptyEntries);
+            if (activationCodeParts.Length != 2)
+                return OperationResult.CreateFailed("Activation code is invalid.");
 
-            var activationString = HtmlUnescape(responseString.Between("url=", "\""));
-            var uri = new Uri(activationString.Replace("duo://", "https://"));
-            var host = uri.Host.Replace("m.", "api.").Replace("m-", "api-");
-            var code = uri.PathAndQuery.Split(new Char[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
+            var host = Encoding.UTF8.GetString(CryptographicBuffer.DecodeFromBase64String(activationCodeParts[1]).ToArray());
+            var code = activationCodeParts[0];
             var activationResult = await InstanceActivationService.ActivateAsync(host, code).ConfigureAwait(false);
             if (activationResult.IsSuccessful)
             {
                 App.Settings.OneTimePasswordCounter = 1;
                 App.Settings.OneTimePasswordSecret = activationResult.Value.OneTimePasswordSecret;
             }
-        }
-
-        private static String HtmlUnescape(String source)
-        {
-            var document = new XmlDocument();
-            document.LoadXml($"<string>{source}</string>");
-            return document.DocumentElement.FirstChild?.InnerText;
+            return activationResult;
         }
     }
 }
