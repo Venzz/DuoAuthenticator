@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2367Venz.DuoAuthenticator" Publisher="CN=AC627798-581D-4841-B3BA-DD2C725E9A5E" Version="1.1.12.0" />
-  <mp:PhoneIdentity PhoneProductId="b90ae6ae-d2b4-4bda-9499-10716798bc91" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="2367Venz.Duo.Mobile" Publisher="CN=AC627798-581D-4841-B3BA-DD2C725E9A5E" Version="1.1.13.0" />
+  <mp:PhoneIdentity PhoneProductId="f4dddb42-b8cf-4add-a75c-47156842d213" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Duo Authenticator</DisplayName>
     <PublisherDisplayName>Venz</PublisherDisplayName>
