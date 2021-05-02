@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2367Venz.Duo.Mobile" Publisher="CN=AC627798-581D-4841-B3BA-DD2C725E9A5E" Version="1.1.13.0" />
+  <Identity Name="2367Venz.Duo.Mobile1" Publisher="CN=AC627798-581D-4841-B3BA-DD2C725E9A5E" Version="1.1.13.0" />
   <mp:PhoneIdentity PhoneProductId="f4dddb42-b8cf-4add-a75c-47156842d213" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Duo Authenticator</DisplayName>
+    <DisplayName>Duo (Dev)</DisplayName>
     <PublisherDisplayName>Venz</PublisherDisplayName>
     <Logo>Resources\Package\Store_50x50.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Duo.App">
-      <uap:VisualElements DisplayName="Duo Authenticator" Square150x150Logo="Resources\Package\Square_150x150.png" Square44x44Logo="Resources\Package\Square_44x44.png" BackgroundColor="transparent" Description="DuoAuthenticator">
+      <uap:VisualElements DisplayName="Duo (Dev)" Square150x150Logo="Resources\Package\Square_150x150.png" Square44x44Logo="Resources\Package\Square_44x44.png" BackgroundColor="transparent" Description="DuoAuthenticator">
         <uap:DefaultTile Wide310x150Logo="Resources\Package\Wide_310x150.png" Square71x71Logo="Resources\Package\Square_71x71.png" Square310x310Logo="Resources\Package\Square_310x310.png" ShortName="Duo">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square310x310Logo"/>
